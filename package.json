@@ -1,0 +1,29 @@
+{
+  "name": "challenge-backend-alkemy",
+  "version": "1.0.0",
+  "description": "Desarrollar una API para explorar el mundo de Disney, la cual permitirá conocer y modificar los\r personajes que lo componen y entender en qué películas estos participaron. Por otro lado, deberá\r exponer la información para que cualquier frontend pueda consumirla.\r 👉 Utilizar NodeJs y Express.\r 👉 No es necesario armar el Frontend.\r 👉 Las rutas deberán seguir el patrón REST.\r 👉 Utilizar la librería Sequelize.\r ⚠️ ¡No es indispensable hacer todo!\r Mientras más completes, mayor puntaje obtendrás, pero puedes enviar la app hasta el estadío que la\r tengas en base a tu conocimiento actual. Recuerda que el objetivo del challenge es entender tu nivel\r de conocimiento actual.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eMartinez16/CHALLENGE-BACKEND-alkemy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eMartinez16/CHALLENGE-BACKEND-alkemy/issues"
+  },
+  "homepage": "https://github.com/eMartinez16/CHALLENGE-BACKEND-alkemy#readme",
+  "dependencies": {
+    "dotenv": "^9.0.2",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "g": "^2.0.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.7",
+    "sequelize": "^6.6.2"
+  }
+}
