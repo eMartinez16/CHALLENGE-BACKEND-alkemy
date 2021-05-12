@@ -1,43 +1,47 @@
-const mysql = require('mysql');
-const { Sequelize } = require('sequelize');
-
 require('dotenv/config');
-let instance = null;
+const { Sequelize, DataTypes } = require('sequelize');
+const characterModel = require('./models/character');
+const userModel = require('./models/user');
+const movieModel = require('./models/movie');
+const genreModel = require('./models/genre');
+const character_movie = require('./models/character_movie');
 
-const con = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
-    port: process.env.DB_PORT,
-});
+//establece conexión con la db utilizando variables de entorno
+const sequelize = new Sequelize(
+    process.env.DB_NAME,
+    process.env.DB_USER,
+    process.env.DB_PASS, {
+        host: process.env.DB_HOST,
+        dialect: 'mysql',
+    },
+);
 
-con.connect(function(error) {
-    if (error) {
-        throw error.message;
-    }
-    console.log('db Conectada');
-});
+//uso de modelos
+const Character = characterModel(sequelize, DataTypes);
+const User = userModel(sequelize, DataTypes);
+const Genre = genreModel(sequelize, DataTypes);
+const Movie = movieModel(sequelize, DataTypes);
+const CharacterMovie = character_movie(sequelize, DataTypes);
 
-class dbService {
-    //creo la clase dbService y dentro un método para instanciar una sola vez dicha clase. Si existe, no se crea.
-    static getDbInstance() {
-        return intance ? instance : new dbService();
-    }
-    async getAllData(query) {
-        try {
-            const response = await new Promise((resolve, reject) => {
-                const query = 'SELECT * FROM personaje';
-                con.query(query, (err, results) => {
-                    if (err) reject(new Error(err.message));
-                    resolve(results);
-                });
-            });
-            console.log(response);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-}
-module.exports = dbService;
-con.end();
+//relaciones de la base de datos
+Movie.hasMany(Genre);
+Genre.belongsTo(Movie);
+
+//relación muchos a muchos
+Character.belongsToMany(Movie, { through: CharacterMovie });
+Movie.belongsToMany(Character, { through: CharacterMovie });
+
+//verifica la conexión con la db
+sequelize
+    .authenticate()
+    .then(() => {
+        console.log('Connection has been established successfully.');
+    })
+    .catch(() => {
+        console.error('Unable to connect to the database:', error);
+    });
+
+//sincroniza las tablas
+sequelize.sync();
+
+module.exports = { Character, User, Genre, Movie };
