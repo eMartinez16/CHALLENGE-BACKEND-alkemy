@@ -5,7 +5,7 @@ const list = async(req, res) => {
         let movies;
         const query = req.query;
         console.log(query);
-        if (query) {
+        if (query.title || query.genre || query.order) {
             if (query.title) {
                 movies = await Movie.findAll({
                     where: {
@@ -52,7 +52,7 @@ const list = async(req, res) => {
 };
 const detail = async(req, res) => {
     try {
-        const movies = await Movie.findAll({
+        const movies = await Movie.findOne({
             where: {
                 id: req.params.id,
             },
@@ -63,6 +63,9 @@ const detail = async(req, res) => {
                 },
             }, ],
         });
+        if (!movies) {
+            res.json({ msg: 'movie not exists' });
+        }
         res.json(movies);
     } catch (error) {
         console.error(error);

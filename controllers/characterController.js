@@ -2,9 +2,10 @@ const { Character, CharacterMovie, Movie } = require('../db');
 
 const list = async(req, res) => {
     const query = req.query;
+    console.log(query);
     try {
         let characters;
-        if (query) {
+        if (query.age || query.movies || query.name) {
             if (query.age) {
                 characters = await Character.findAll({
                     where: {
@@ -53,7 +54,7 @@ const list = async(req, res) => {
 };
 const detail = async(req, res) => {
     try {
-        const characters = await Character.findAll({
+        const characters = await Character.findOne({
             where: {
                 id: req.params.id,
             },
@@ -64,6 +65,9 @@ const detail = async(req, res) => {
                 },
             }, ],
         });
+        if (!characters) {
+            res.json({ msg: 'character not exists' });
+        }
         res.json(characters);
     } catch (error) {
         console.error(error);
