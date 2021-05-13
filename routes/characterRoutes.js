@@ -1,8 +1,7 @@
 const { Router } = require('express');
-const app = require('../app');
 const router = Router();
+const characterController = require('../controllers/characterController');
 
-router.get('/characters', (req, res) => {
-    res.render('./charactersList');
-});
+router.get('/', characterController.list);
+
 module.exports = router;

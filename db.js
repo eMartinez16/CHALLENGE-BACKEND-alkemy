@@ -44,4 +44,4 @@ sequelize
 //sincroniza las tablas
 sequelize.sync();
 
-module.exports = { Character, User, Genre, Movie };
+module.exports = { Character, User, Genre, Movie, CharacterMovie };
