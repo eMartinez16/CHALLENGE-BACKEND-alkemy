@@ -1,6 +1,9 @@
 const { User } = require('../db');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const nodeMailer = require('nodemailer');
+require('dotenv/config');
+const { response } = require('express');
 
 //Verificación, login y generación de token
 const postLogin = async(req, res) => {
@@ -43,6 +46,31 @@ const postRegister = async(req, res) => {
             name,
             email,
             password: hashedPassword,
+        });
+        const transporter = nodeMailer.createTransport({
+            //Uso de GMAIL
+            host: 'smtp.gmail.com',
+            //Puerto para brindar seguridad
+            port: 465,
+            secure: true,
+            auth: {
+                user: 'emartinezd16@gmail.com',
+                pass: process.env.pass_Gmail,
+            },
+        });
+        const mailOptions = {
+            from: 'Remitente',
+            to: newUser.email,
+            subject: 'Enviado desde nodemailer',
+            text: 'Welcome!',
+        };
+        //envia el mail a la casilla no deseados
+        await transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                res.status(500).send(error.message);
+            } else {
+                console.log('Mail send');
+            }
         });
         return res.json({ newUser });
     } catch (error) {
