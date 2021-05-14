@@ -16,8 +16,8 @@ de conocimiento actual.
 ## **Requerimientos técnicos**
 
 1. Modelado de Base de Datos
-● Personaje: deberá tener,
 
+● Personaje: deberá tener,
 Imagen.
 Nombre.
 Edad.
