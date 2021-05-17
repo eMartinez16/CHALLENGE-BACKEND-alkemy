@@ -1,0 +1,492 @@
+{
+	"info": {
+		"_postman_id": "721ce12c-84f0-4ee5-a501-bd4be3422cc9",
+		"name": "testApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "userTest",
+			"item": [
+				{
+					"name": "createUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"emi@gmail.com \",\r\n    \"name\":\"Emiliano\",\r\n    \"password\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"emi@gmail.com\",\r\n    \"password\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "movieTest",
+			"item": [
+				{
+					"name": "createMovie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiMzI5YjMwNzEtOTdhOC00NWNkLTg1MmUtOTQ1YzQ5MTU5MDZmIiwiaWF0IjoxNjIxMjgyMTI3LCJleHAiOjIyMjYwODIxMjd9.vR9IWRilWQetqO0SY2h3Tm1f2gRNKeox-J3Grp4ds08",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Avengers: End game\",\r\n    \"image\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Avengers_Endgame_Logo_Black.svg/1200px-Avengers_Endgame_Logo_Black.svg.png\",\r\n    \"creation_date\": \"2019-04-22\",\r\n    \"qualification\": 5,\r\n    \"genreId\": 1\r\n\r\n\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"movies"
+							]
+						},
+						"description": "When you create a new movie, you need to remember the exact  title  that you register, because you will needed that field to create a new character(and you must provide a token in the Auth header)."
+					},
+					"response": []
+				},
+				{
+					"name": "modifyMovie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiMzI5YjMwNzEtOTdhOC00NWNkLTg1MmUtOTQ1YzQ5MTU5MDZmIiwiaWF0IjoxNjIxMjgyNzE3LCJleHAiOjIyMjYwODI3MTd9.AdwBOZT64HoieY_Q6fkojs8yiuYROg14NjCMo7-FYpE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"qualification\":5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/movies/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"movies",
+								"id"
+							]
+						},
+						"description": "To modify the fields of a movie, you need to be logged in (you must provide a token in the Auth header) and know the id of the movie.\nIn the URL, ID must be a number."
+					},
+					"response": []
+				},
+				{
+					"name": "deleteMovie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiMzI5YjMwNzEtOTdhOC00NWNkLTg1MmUtOTQ1YzQ5MTU5MDZmIiwiaWF0IjoxNjIxMjgyMTI3LCJleHAiOjIyMjYwODIxMjd9.vR9IWRilWQetqO0SY2h3Tm1f2gRNKeox-J3Grp4ds08",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/movies/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"movies",
+								"id"
+							]
+						},
+						"description": "To delete a movie, you need to be logged in (you must provide a token in the Auth header)and know the id of the movie.\nIn the URL, ID must be a number."
+					},
+					"response": []
+				},
+				{
+					"name": "showMovies",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filterGenre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/movies?genre=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"movies"
+							],
+							"query": [
+								{
+									"key": "genre",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filterOrder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/movies?order=desc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"movies"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "characterTest",
+			"item": [
+				{
+					"name": "createCharacter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiMzI5YjMwNzEtOTdhOC00NWNkLTg1MmUtOTQ1YzQ5MTU5MDZmIiwiaWF0IjoxNjIxMjgyMTI3LCJleHAiOjIyMjYwODIxMjd9.vR9IWRilWQetqO0SY2h3Tm1f2gRNKeox-J3Grp4ds08",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Chris Evans\",\r\n    \"age\": 39, \r\n    \"weight\": 77,\r\n    \"history\": \"is an American actor, voice actor, director, and producer.\",\r\n    \"image\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Chris_Evans_2020_%28cropped%29.jpg/220px-Chris_Evans_2020_%28cropped%29.jpg\",\r\n    \"title\": \"Avengers: End game\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/characters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"characters"
+							]
+						},
+						"description": "To create a character you first need to create a movie because the title is needed as a field in the character model. It is used in this way to make the comparison with an existing record in the movies table, it has to be written in the same way as it was registered in the database."
+					},
+					"response": []
+				},
+				{
+					"name": "modifyCharacter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiMzI5YjMwNzEtOTdhOC00NWNkLTg1MmUtOTQ1YzQ5MTU5MDZmIiwiaWF0IjoxNjIxMjgyMTI3LCJleHAiOjIyMjYwODIxMjd9.vR9IWRilWQetqO0SY2h3Tm1f2gRNKeox-J3Grp4ds08",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/characters/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"characters",
+								"id"
+							]
+						},
+						"description": "To modify the fields of a character, you need to be logged in and know the id of the character.\nIn the URL, ID must be a number."
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCharacter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiMzI5YjMwNzEtOTdhOC00NWNkLTg1MmUtOTQ1YzQ5MTU5MDZmIiwiaWF0IjoxNjIxMjgyMTI3LCJleHAiOjIyMjYwODIxMjd9.vR9IWRilWQetqO0SY2h3Tm1f2gRNKeox-J3Grp4ds08",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/characters/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"characters",
+								"id"
+							]
+						},
+						"description": "To delete a character, you need to be logged in and know the id of the character.\nIn the URL, ID must be a number."
+					},
+					"response": []
+				},
+				{
+					"name": "showCharacters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/characters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"characters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filterAge",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/characters?age=56",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "age",
+									"value": "56"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filterMovie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/characters?movies=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "movies",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filterName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/characters?name=Robert Downey Jr",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"characters"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Robert Downey Jr"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
