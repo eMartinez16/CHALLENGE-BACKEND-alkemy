@@ -16,7 +16,8 @@ const postLogin = async(req, res) => {
     if (!user) {
         return res.json({ error: 'User not found' });
     }
-    if (!bcrypt.compare(req.body.password, user.password)) {
+    const currentPassword = await bcrypt.compare(req.body.password, user.password);
+    if (!currentPassword) {
         return res.json({ error: 'Invalid credentials' });
     }
     //Uso de libreria jsonwebToken para generar un token que contiene el user.id junto con la variable de entorno secreta
@@ -54,7 +55,7 @@ const postRegister = async(req, res) => {
             port: 465,
             secure: true,
             auth: {
-                user: 'emartinezd16@gmail.com',
+                user: process.env.mail,
                 pass: process.env.pass_Gmail,
             },
         });
@@ -62,7 +63,7 @@ const postRegister = async(req, res) => {
             from: 'Remitente',
             to: newUser.email,
             subject: 'Enviado desde nodemailer',
-            text: 'Welcome!',
+            text: 'Welcome to the api!',
         };
         //envia el mail a la casilla no deseados
         await transporter.sendMail(mailOptions, (error, info) => {

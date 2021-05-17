@@ -24,8 +24,8 @@ const Movie = movieModel(sequelize, DataTypes);
 const CharacterMovie = character_movie(sequelize, DataTypes);
 
 //relaciones de la base de datos
-Movie.hasMany(Genre);
-Genre.belongsTo(Movie);
+Genre.hasMany(Movie);
+Movie.belongsTo(Genre);
 
 //relación muchos a muchos
 Character.belongsToMany(Movie, { through: CharacterMovie });
@@ -42,6 +42,6 @@ sequelize
     });
 
 //sincroniza las tablas
-sequelize.sync();
+sequelize.sync({});
 
 module.exports = { Character, User, Genre, Movie, CharacterMovie };
