@@ -269,6 +269,32 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "filterTitle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/movies?title=avengers: end game",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"movies"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "avengers: end game"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
